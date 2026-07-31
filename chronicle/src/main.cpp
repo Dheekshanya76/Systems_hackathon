@@ -1,37 +1,35 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
-
 void help()
 {
-    cout << ".quit       Shut down the world engine" << endl;
-    cout << ".help       Show this message" << endl;
-    cout << ".version    Show engine version" << endl;
-    cout << ".status     Show world status" << endl;
+    std::cout << ".quit       Shut down the world engine\n";
+    std::cout << ".help       Show this message\n";
+    std::cout << ".version    Show engine version\n";
+    std::cout << ".status     Show world status\n";
 }
 
 void version()
 {
-    cout << "Chronicle v0.1 - Ironhold World Engine" << endl;
+    std::cout << "Chronicle v0.1 - Ironhold World Engine\n";
 }
 
 void status()
 {
-    cout << "World: offline" << endl;
+    std::cout << "World: offline\n";
 }
 
-void worldCommand(string input)
+void worldCommand(const std::string &input)
 {
-    cout << "[World command queued: " << input << "]" << endl;
+    std::cout << "[World command queued: " << input << "]\n";
 }
 
 void unknownCommand()
 {
-    cout << "Unknown command. Try .help" << endl;
+    std::cout << "Unknown command. Try .help\n";
 }
 
-bool handleMeta(string input)
+bool handleMeta(const std::string &input)
 {
     if (input == ".quit")
     {
@@ -59,16 +57,15 @@ bool handleMeta(string input)
 
 int main()
 {
-    string input;
+    std::string input;
 
     while (true)
     {
-        cout << "ironhold> ";
+        std::cout << "ironhold> ";
 
-        if (!getline(cin, input))
+        if (!std::getline(std::cin, input))
             break;
 
-        // Skip empty lines
         if (input.empty())
             continue;
 
