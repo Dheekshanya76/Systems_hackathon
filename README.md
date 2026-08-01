@@ -133,4 +133,3 @@ make clean
 
 -  Milestone 1 Complete
 -  Milestone 2 Complete
-- ⏳ Milestone 3 (Persistence) – Upcoming
