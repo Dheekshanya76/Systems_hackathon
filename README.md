@@ -179,35 +179,6 @@ make clean
 
 ---
 
-# Development Workflow
-
-Create a milestone branch:
-
-```bash
-git checkout -b m3
-```
-
-Build and test changes:
-
-```bash
-make
-```
-
-Commit changes:
-
-```bash
-git add .
-git commit -m "Implement milestone 3 persistent world"
-```
-
-Push branch:
-
-```bash
-git push origin m3
-```
-
----
-
 # Current Status
 
 *  Milestone 1 — Debug Console
