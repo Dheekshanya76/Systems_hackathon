@@ -1,64 +1,136 @@
-# Systems_hackathon
-# Chronicle - Ironhold World Engine
+# Chronicle – Ironhold World Engine
 
-Chronicle is the backend world-state engine for **Ironhold**, an open-world survival game. This project is being developed milestone by milestone as part of the Systems Hackathon.
+Chronicle is the backend world-state engine for **Ironhold**, an open-world survival game. It is developed incrementally through milestones, adding new functionality while maintaining compatibility with previous features.
 
-## Milestone 1 - Game Debug Console
+## Milestone 1 – Debug Console
 
-### Features
+Implemented an interactive developer console with the following features:
 
-- Interactive console with `ironhold>` prompt
+- Interactive REPL with `ironhold>` prompt
 - Meta commands:
   - `.help`
   - `.version`
   - `.status`
   - `.quit`
-- Unknown meta-command handling
+- Unknown command handling
 - World command stub for non-dot commands
-- Empty line handling
+
+---
+
+## Milestone 2 – Entity Commands and World State
+
+This milestone introduces the first in-memory world state by supporting **Player** entities.
+
+### Features
+
+- SPAWN PLAYER command
+- LIST PLAYERS command
+- In-memory player storage
+- Duplicate Player ID detection
+- Username validation (maximum 32 characters)
+- Email validation (maximum 255 characters)
+- Syntax error handling for malformed commands
+- Sorted player listing by ID
+- Support for command-line world file argument (reserved for future persistence)
+
+---
+
+## Supported Commands
+
+### Meta Commands
+
+| Command | Description |
+|---------|-------------|
+| `.help` | Show available commands |
+| `.version` | Display engine version |
+| `.status` | Display current world status |
+| `.quit` | Exit the application |
+
+### World Commands
+
+Spawn a player
+
+```text
+SPAWN PLAYER <id> <username> <email>
+```
+
+Example
+
+```text
+SPAWN PLAYER 1 alice alice@ironhold.gg
+```
+
+List all players
+
+```text
+LIST PLAYERS
+```
+
+---
+
+## Example Session
+
+```text
+ironhold> SPAWN PLAYER 1 alice alice@ironhold.gg
+Spawned.
+
+ironhold> SPAWN PLAYER 2 bob bob@ironhold.gg
+Spawned.
+
+ironhold> LIST PLAYERS
+[1] alice <alice@ironhold.gg>
+[2] bob <bob@ironhold.gg>
+2 entities.
+
+ironhold> .quit
+```
+
+---
 
 ## Project Structure
 
 ```
 chronicle/
 ├── include/
+│   ├── player.hpp
+│   ├── command.hpp
+│   ├── world_state.hpp
 │   └── application_state.hpp
 ├── src/
-│   └── main.cpp
+│   ├── main.cpp
+│   ├── command.cpp
+│   └── world_state.cpp
 ├── tests/
 ├── Makefile
 └── README.md
 ```
 
+---
+
 ## Build
+
+Compile the project using:
 
 ```bash
 make
 ```
 
-## Run
+Run the application:
 
 ```bash
 ./chronicle
 ```
 
-## Example
+Clean generated files:
 
+```bash
+make clean
 ```
-ironhold> .help
-.quit       Shut down the world engine
-.help       Show this message
-.version    Show engine version
-.status     Show world status
 
-ironhold> .version
-Chronicle v0.1 - Ironhold World Engine
+---
 
-ironhold> spawn player 1 alice
-[World command queued: spawn player 1 alice]
+## Current Status
 
-ironhold> .status
-World: offline
-
-ironhold> .quit
-```
+-  Milestone 1 Complete
+-  Milestone 2 Complete
+- ⏳ Milestone 3 (Persistence) – Upcoming
