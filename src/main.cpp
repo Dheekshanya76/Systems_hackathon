@@ -1,6 +1,12 @@
 #include <iostream>
 #include <string>
 
+#include "../include/world_state.hpp"
+#include "../include/command.hpp"
+
+Command parseCommand(const std::string &input);
+void execute(const Command &cmd, WorldState &world);
+
 void help()
 {
     std::cout << ".quit       Shut down the world engine\n";
@@ -11,22 +17,12 @@ void help()
 
 void version()
 {
-    std::cout << "Chronicle v0.1 - Ironhold World Engine\n";
+    std::cout << "Chronicle v0.2 - Ironhold World Engine\n";
 }
 
 void status()
 {
-    std::cout << "World: offline\n";
-}
-
-void worldCommand(const std::string &input)
-{
-    std::cout << "[World command queued: " << input << "]\n";
-}
-
-void unknownCommand()
-{
-    std::cout << "Unknown command. Try .help\n";
+    std::cout << "World: online\n";
 }
 
 bool handleMeta(const std::string &input)
@@ -49,14 +45,18 @@ bool handleMeta(const std::string &input)
     }
     else
     {
-        unknownCommand();
+        std::cout << "Unknown command. Try .help\n";
     }
 
     return true;
 }
 
-int main()
+int main(int argc, char *argv[])
 {
+    (void)argc;
+    (void)argv;
+
+    WorldState world;
     std::string input;
 
     while (true)
@@ -76,7 +76,8 @@ int main()
         }
         else
         {
-            worldCommand(input);
+            Command cmd = parseCommand(input);
+            execute(cmd, world);
         }
     }
 
