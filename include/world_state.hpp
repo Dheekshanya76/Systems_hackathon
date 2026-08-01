@@ -1,16 +1,31 @@
 #ifndef WORLD_STATE_HPP
 #define WORLD_STATE_HPP
 
-#include <vector>
+#include <cstdint>
+#include <string>
 
-#include "player.hpp"
+#include "pager.hpp"
+#include "entity.hpp"
 #include "command.hpp"
+
 
 struct WorldState
 {
-    std::vector<Player> players;
+    Pager pager;
+
+    uint32_t numEntities;
+
+    std::string filename;
+
+
+    WorldState(const std::string &file);
+
+
+    void *entity_slot(uint32_t index);
 };
 
+
 void execute(const Command &cmd, WorldState &world);
+
 
 #endif

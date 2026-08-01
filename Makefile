@@ -5,9 +5,11 @@ CXXFLAGS = -std=c++20 -Wall -Wextra -pedantic -Iinclude
 TARGET = chronicle
 
 SRC = \
-	src/main.cpp \
-	src/command.cpp \
-	src/world_state.cpp
+src/main.cpp \
+src/command.cpp \
+src/world_state.cpp \
+src/entity.cpp \
+src/pager.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
